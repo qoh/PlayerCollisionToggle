@@ -1,0 +1,6 @@
+*
+!*/
+!*.md
+!*.h
+!*.cpp
+!.gitignore
