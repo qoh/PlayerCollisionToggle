@@ -81,7 +81,8 @@ bool Init()
 	ConsoleVariable("$Physics::PlayerContactMaskClient", PlayerCollisionMaskClient);
 
 	ConsoleVariable("$Physics::VehicleCollisionMask", VehicleCollisionMask);
-	
+
+	Eval("$TypeMasks::PlayerObjectTypeNormal = 16384;", false, nullptr);
 	Eval("$TypeMasks::PlayerObjectTypeHidden = (1 << 29);", false, nullptr);
 	Eval("$TypeMasks::PlayerObjectTypeAll = 16384 | (1 << 29);", false, nullptr);
 
