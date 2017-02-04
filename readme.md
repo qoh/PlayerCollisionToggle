@@ -33,6 +33,7 @@ You can change this by using the `$TypeMasks::PlayerObjectTypeHidden` and `$Type
 If you need to modify the default behavior, you can do something like this: `$TypeMasks::PlayerObjectType = $TypeMasks::PlayerObjectTypeAll;`
 ## Modifying collision behavior (examples)
 You will need to install [MoveHandler](https://github.com/portify/MoveHandler) for some of these to work.
+For unknown reasons MoveHandler crashes your server if you spawn a hole bot.
 ### Prevent vehicles from colliding with any players:
 ```
 $Physics::VehicleCollisionMask &= ~$TypeMasks::PlayerObjectTypeAll;
@@ -43,7 +44,7 @@ $Physics::VehicleCollisionMask |= $TypeMasks::PlayerObjectTypeAll;
 ```
 ### Allow players in the second layer to walk through players in the first layer:
 ```
-funtion onPlayerProcessTick(%player, %move)
+function onPlayerProcessTick(%player, %move)
 {
 	if(%player.getType() & $TypeMasks::PlayerObjectTypeHidden)
 	{
@@ -59,7 +60,7 @@ funtion onPlayerProcessTick(%player, %move)
 ```
 ### Players collide with other players in the same layer, and pass through players in the other:
 ```
-funtion onPlayerProcessTick(%player, %move)
+function onPlayerProcessTick(%player, %move)
 {
 	if(%player.getType() & $TypeMasks::PlayerObjectTypeHidden)
 	{
@@ -84,7 +85,7 @@ funtion onPlayerProcessTick(%player, %move)
 $Physics::PlayerMoveMask |= $TypeMasks::PlayerObjectTypeAll;
 $Physics::PlayerContactMaskServer |= $TypeMasks::PlayerObjectTypeAll;
 
-funtion onPlayerProcessTick(%player, %move)
+function onPlayerProcessTick(%player, %move)
 {
 	if(%player.getType() & $TypeMasks::PlayerObjectTypeHidden)
 	{
