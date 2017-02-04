@@ -20,11 +20,11 @@ You can set collision between players using the global `setPlayerCollision(bool 
 ## Disabling collision for specific players
 You can move a player to a second collision layer by changing it's typemask:
 ```
-%player.setType((%player.getType() | $TypeMasks::PlayerObjectTypeNormal) & ~$TypeMasks::PlayerObjectTypeHidden);
+%player.setType((%player.getType() | $TypeMasks::PlayerObjectTypeHidden) & ~$TypeMasks::PlayerObjectTypeNormal);
 ```
 And change it back like this:
 ```
-%player.setType((%player.getType() | $TypeMasks::PlayerObjectTypeHidden) & ~$TypeMasks::PlayerObjectTypeNormal);
+%player.setType((%player.getType() | $TypeMasks::PlayerObjectTypeNormal) & ~$TypeMasks::PlayerObjectTypeHidden);
 ```
 This allows other players to walk through it.
 ## Raycasts and box searches
