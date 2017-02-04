@@ -5,7 +5,7 @@ It can be used for challenge or racing servers, to prevent players interfering w
 # Compiling
 1. Create a blank win32 project in Visual Studio.
 2. Place the files from PlayerCollisionToggle in the project.
-3. Add the file to the project in Solution Explorer and click Build.
+3. Add the files to the project in Solution Explorer and click Build.
 
 # Installation
 1. Install [BlocklandLoader](https://github.com/portify/BlocklandLoader).
@@ -20,11 +20,11 @@ You can set collision between players using the global `setPlayerCollision(bool 
 ## Disabling collision for specific players
 You can move a player to a second collision layer by changing it's typemask:
 ```
-%player.setType((%player.getType() | $TypeMasks::PlayerObjectType) & ~$TypeMasks::PlayerObjectTypeHidden);
+%player.setType((%player.getType() | $TypeMasks::PlayerObjectTypeNormal) & ~$TypeMasks::PlayerObjectTypeHidden);
 ```
 And change it back like this:
 ```
-%player.setType((%player.getType() | $TypeMasks::PlayerObjectTypeHidden) & ~$TypeMasks::PlayerObjectType);
+%player.setType((%player.getType() | $TypeMasks::PlayerObjectTypeHidden) & ~$TypeMasks::PlayerObjectTypeNormal);
 ```
 This allows other players to walk through it.
 ## Raycasts and box searches
