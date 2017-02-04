@@ -6,8 +6,8 @@ int* PlayerCollisionMaskClient;
 
 int* VehicleCollisionMask;
 
-int PlayerObjectType1 = 16384;
-int PlayerObjectType2 = 1 << 29;
+int PlayerObjectType = 16384;
+int PlayerObjectTypeHidden = 1 << 29;
 
 int VehicleObjectType = 65536;
 
@@ -24,17 +24,17 @@ static void setPlayerCollision(DWORD* obj, int argc, const char** argv)
 	{
 		Printf("PlayerCollisionToggle | Player collision enabled");
 
-		*PlayerMoveMask            |= PlayerObjectType1;
-		*PlayerCollisionMaskServer |= PlayerObjectType1;
-		*PlayerCollisionMaskClient |= PlayerObjectType1;
+		*PlayerMoveMask            |= PlayerObjectType;
+		*PlayerCollisionMaskServer |= PlayerObjectType;
+		*PlayerCollisionMaskClient |= PlayerObjectType;
 	}
 	else
 	{
 		Printf("PlayerCollisionToggle | Player collision disabled");
 
-		*PlayerMoveMask            &= ~PlayerObjectType1;
-		*PlayerCollisionMaskServer &= ~PlayerObjectType1;
-		*PlayerCollisionMaskClient &= ~PlayerObjectType1;
+		*PlayerMoveMask            &= ~PlayerObjectType;
+		*PlayerCollisionMaskServer &= ~PlayerObjectType;
+		*PlayerCollisionMaskClient &= ~PlayerObjectType;
 	}
 }
 
@@ -82,9 +82,8 @@ bool Init()
 
 	ConsoleVariable("$Physics::VehicleCollisionMask", VehicleCollisionMask);
 	
-	Eval("$TypeMasks::PlayerObjectType1 = 16384;", false, nullptr);
-	Eval("$TypeMasks::PlayerObjectType2 = (1 << 29);", false, nullptr);
-	Eval("$TypeMasks::PlayerObjectType = 16384 | (1 << 29);", false, nullptr);
+	Eval("$TypeMasks::PlayerObjectTypeHidden = (1 << 29);", false, nullptr);
+	Eval("$TypeMasks::PlayerObjectTypeAll = 16384 | (1 << 29);", false, nullptr);
 
 	Printf("PlayerCollisionToggle | DLL loaded");
 
