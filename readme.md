@@ -72,8 +72,8 @@ function onPlayerProcessTick(%player, %move)
 	}
 	else
 	{		
-		$Physics::PlayerMoveMask &= ~$$TypeMasks::PlayerObjectTypeHidden;
-		$Physics::PlayerContactMaskServer &= ~$$TypeMasks::PlayerObjectTypeHidden;
+		$Physics::PlayerMoveMask &= ~$TypeMasks::PlayerObjectTypeHidden;
+		$Physics::PlayerContactMaskServer &= ~$TypeMasks::PlayerObjectTypeHidden;
 
 		$Physics::PlayerMoveMask |= $TypeMasks::PlayerObjectTypeNormal;
 		$Physics::PlayerContactMaskServer |= $TypeMasks::PlayerObjectTypeNormal;
