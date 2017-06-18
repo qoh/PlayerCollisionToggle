@@ -48,21 +48,15 @@ DECL_BL_FUNC(void, __thiscall, AddVariable, DWORD dictionaryPtr, const char* nam
 //Signature scanner
 
 //Set the module start and length
-void InitScanner(char* moduleName)
+void InitScanner()
 {
-	//Find the module
-	HMODULE module = GetModuleHandleA(moduleName);
+	//Retrieve information about the module
+	MODULEINFO info;
+	GetModuleInformation(GetCurrentProcess(), GetModuleHandle(NULL), &info, sizeof(MODULEINFO));
 
-	if (module)
-	{
-		//Retrieve information about the module
-		MODULEINFO info;
-		GetModuleInformation(GetCurrentProcess(), module, &info, sizeof(MODULEINFO));
-
-		//Store relevant information
-		ImageBase = (DWORD)info.lpBaseOfDll;
-		ImageSize = info.SizeOfImage;
-	}
+	//Store relevant information
+	ImageBase = (DWORD)info.lpBaseOfDll;
+	ImageSize = info.SizeOfImage;
 }
 
 //Compare data at two locations for equality
@@ -189,7 +183,7 @@ void ConsoleVariable(const char* name, char* data)
 bool InitTorque()
 {
 	//Init the scanner
-	InitScanner("Blockland.exe");
+	InitScanner();
 	
 	//Printf is required for debug output, so find it first
 	Printf = (PrintfFn)ScanFunc("\x8B\x4C\x24\x04\x8D\x44\x24\x08\x50\x6A\x00\x6A\x00\xE8\x00\x00\x00\x00\x83\xC4\x0C\xC3", "xxxxxxxxxxxxxx????xxxx");
