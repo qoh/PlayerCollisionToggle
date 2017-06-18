@@ -1,6 +1,6 @@
 #include "torque.h"
-#include <Windows.h>
-#include <Psapi.h>
+#include <windows.h>
+#include <psapi.h>
 
 //Global variables
 
